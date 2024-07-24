@@ -140,12 +140,12 @@ function serializer(msg, opts, cb) {
                 return;
             }
 
-            msg.payload.torque = Math.trunc(msg.payload.torque * 100);
-            msg.payload.torqueFinalTarget = Math.trunc(msg.payload.torqueFinalTarget * 100);
-            msg.payload.torqueMax = Math.trunc(msg.payload.torqueMax * 100);
-            msg.payload.torqueMin = Math.trunc(msg.payload.torqueMin * 100);
-            msg.payload.torqueThreshold = Math.trunc(msg.payload.torqueThreshold * 100);
-            msg.payload.angleThreshold = Math.trunc(msg.payload.angleThreshold * 100);
+            msg.payload.torque = Math.round(msg.payload.torque * 100);
+            msg.payload.torqueFinalTarget = Math.round(msg.payload.torqueFinalTarget * 100);
+            msg.payload.torqueMax = Math.round(msg.payload.torqueMax * 100);
+            msg.payload.torqueMin = Math.round(msg.payload.torqueMin * 100);
+            msg.payload.torqueThreshold = Math.round(msg.payload.torqueThreshold * 100);
+            msg.payload.angleThreshold = Math.round(msg.payload.angleThreshold * 100);
 
             statusprocess =
                 serializerField(msg, buf, "adapterLength", "number", 3, position, cb) &&
