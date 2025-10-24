@@ -1,6 +1,6 @@
 {
   "name": "node-open-protocol",
-  "version": "1.1.2-mid-29",
+  "version": "1.1.3-mid-29-mid-25",
   "description": "Node implementation of the Atlas Copco Open Protocol",
   "main": "index.js",
   "directories": {
