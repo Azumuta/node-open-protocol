@@ -104,7 +104,7 @@ function serializer(msg, opts, cb) {
 }
 
 function revision() {
-    return [1, 2];
+    return [2, 1];
 }
 
 module.exports = {

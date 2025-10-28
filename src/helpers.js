@@ -65,7 +65,12 @@ function getMids() {
 
     midList = [];
 
-    const listFiles = fs.readdirSync(path.join(__dirname, ".", "mid"));
+    // support pkg execution
+    let listFilesDir = path.join(__dirname, ".", "mid");
+    if (process.pkg) {
+        listFilesDir = path.join(__dirname, ".", "node-open-protocol", "mid");
+    }
+    const listFiles = fs.readdirSync(listFilesDir);
 
     listFiles.forEach((file) => {
 
@@ -405,7 +410,7 @@ function processResolutionFields(message, buffer, parameter, count, position, cb
             }
             resolutionFields.firstIndex = firstIndex;
             position.value += 5;
- 
+
             let lastIndex = Number(buffer.toString(encoding, position.value, position.value + 5));
 
             if (isNaN(lastIndex) || lastIndex < 0) {
@@ -414,7 +419,7 @@ function processResolutionFields(message, buffer, parameter, count, position, cb
             }
             resolutionFields.lastIndex = lastIndex;
             position.value += 5;
- 
+
             let length = Number(buffer.toString(encoding, position.value, position.value + 3));
 
             if (isNaN(length) || length < 0) {

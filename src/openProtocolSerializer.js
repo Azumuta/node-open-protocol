@@ -80,7 +80,7 @@ class OpenProtocolSerializer extends Transform {
             return;
         }
 
-        if (chunk.stationID === "  " ||chunk.stationID === undefined) {
+        if (chunk.stationID === "  " || chunk.stationID === undefined) {
             chunk.stationID = 1;
         }
 
@@ -92,7 +92,7 @@ class OpenProtocolSerializer extends Transform {
             return;
         }
 
-        if (chunk.spindleID === "  " ||chunk.spindleID === undefined) {
+        if (chunk.spindleID === "  " || chunk.spindleID === undefined) {
             chunk.spindleID = 1;
         }
 
@@ -140,7 +140,7 @@ class OpenProtocolSerializer extends Transform {
             return;
         }
 
-        if(chunk.payload === undefined){
+        if (chunk.payload === undefined) {
             chunk.payload = "";
         }
 
@@ -163,7 +163,8 @@ class OpenProtocolSerializer extends Transform {
         buf.write(pad(chunk.sequenceNumber, 2), 16, encodingOP);
         buf.write(pad(chunk.messageParts, 1), 18, encodingOP);
         buf.write(pad(chunk.messageNumber, 1), 19, encodingOP);
-        buf.write(chunk.payload.toString(encodingOP), 20, encodingOP);
+        // payload always needs to be written as binary to support binary data (e.g. MID 25 revision 2)
+        buf.write(chunk.payload.toString('binary'), 20, 'binary');
         buf.write("\u0000", sizeMessage, encodingOP);
 
         debug("openProtocolSerializer _transform publish", buf);
